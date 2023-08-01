@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fehlermeldung</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 10rem;
+      margin: 0;
+      letter-spacing: -6px;
+      font-weight: bold;
+      color: #d32f2f;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: #555;
+      margin: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h1 id="status-code">500</h1>
+<p id="status-message">Interner Fehler des Servers (Fehler beim Erstellen der Fehlermeldung lol)</p>
+<br><br>
+<p>##error_msg##</p>
+<script>
+  // Statuscode und automatisch generierte Beschreibung setzen
+  const statusCode = window.server_params.statuscode ?? 404; // Hier die Variable für den Statuscode anpassen
+
+  const statusMessages = {
+    300: "Der Server hat mehrere Möglichkeiten zur Antwort. Der Client soll eine davon auswählen.",
+    301: "Die angeforderte Ressource wurde dauerhaft an eine andere URI verschoben.",
+    302: "Die angeforderte Ressource wurde vorübergehend an eine andere URI verschoben.",
+    303: "Die angeforderte Ressource befindet sich an einer anderen URI, die durch GET abgerufen werden kann.",
+    304: "Die angeforderte Ressource hat sich nicht geändert.",
+    307: "Die angeforderte Ressource wurde vorübergehend an eine andere URI verschoben, Client soll dieselbe Methode verwenden.",
+    308: "Die angeforderte Ressource wurde dauerhaft an eine andere URI verschoben, Client soll dieselbe Methode verwenden.",
+    400: "Die Anfrage war fehlerhaft oder konnte nicht verarbeitet werden.",
+    401: "Der Zugriff wurde verweigert, Authentifizierung erforderlich.",
+    403: "Der Zugriff wurde verweigert, der Client hat keine Berechtigung.",
+    404: "Die angeforderte Ressource wurde nicht gefunden.",
+    405: "Die angeforderte Methode ist für die Ressource nicht erlaubt.",
+    408: "Die Anfrage wurde aufgrund einer Server-Zeitüberschreitung abgebrochen.",
+    409: "Es gibt einen Konflikt mit den aktuellen Zuständen der Ressource.",
+    410: "Die angeforderte Ressource wurde dauerhaft entfernt und ist nicht mehr verfügbar.",
+    411: "Die Anfrage ist ohne Content-Length-Header ungültig.",
+    413: "Die Anfrage ist zu groß und der Server kann sie nicht verarbeiten.",
+    414: "Die URI der Anfrage ist zu lang und der Server kann sie nicht verarbeiten.",
+    415: "Der Medientyp der Anfrage wird vom Server nicht unterstützt.",
+    429: "Der Server hat zu viele Anfragen von diesem Client erhalten.",
+    500: "Es ist ein interner Serverfehler aufgetreten.",
+    501: "Die angeforderte Funktion wurde vom Server nicht implementiert.",
+    502: "Der Server hat eine ungültige Antwort von einem anderen Server erhalten.",
+    503: "Der Server ist vorübergehend nicht verfügbar (Wartung oder Überlastung).",
+    504: "Der Server hat eine Zeitüberschreitung bei der Kommunikation mit einem anderen Server.",
+    505: "Die angeforderte HTTP-Version wird vom Server nicht unterstützt."
+  };
+
+
+  const statusMessage = statusMessages[statusCode] || "Unknown Error";
+
+  document.getElementById("status-code").textContent = statusCode;
+  document.getElementById("status-message").textContent = statusMessage;
+</script>
+</body>
+</html>
